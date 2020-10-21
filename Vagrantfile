@@ -2,7 +2,7 @@ $domain = "example.com"
 $domain_ip_address = "192.168.56.2"
 
 Vagrant.configure("2") do |config|
-    config.vm.box = "windows-2019-amd64"
+    config.vm.box = "goffinet/windows-2019-amd64"
     config.vm.define "windows-domain-controller"
     config.vm.hostname = "dc"
 
@@ -20,7 +20,11 @@ Vagrant.configure("2") do |config|
         lv.keymap = 'pt'
         # replace the default synced_folder with something that works in the base box.
         # NB for some reason, this does not work when placed in the base box Vagrantfile.
-        config.vm.synced_folder '.', '/vagrant', type: 'smb', smb_username: ENV['USER'], smb_password: ENV['VAGRANT_SMB_PASSWORD']
+        #config.vm.synced_folder '.', '/vagrant', type: 'smb', smb_username: ENV['USER'], smb_password: ENV['VAGRANT_SMB_PASSWORD']
+        config.vm.synced_folder '.', '/vagrant', type: 'rsync', rsync__exclude: [
+          '.vagrant/',
+          '.git/',
+          '*.box']
     end
 
     config.vm.provider :virtualbox do |v, override|
@@ -42,7 +46,7 @@ Vagrant.configure("2") do |config|
     config.vm.provision "shell", reboot: true
     config.vm.provision "shell", path: "provision/ps.ps1", args: "domain-controller-configure.ps1"
     config.vm.provision "shell", inline: "$env:chocolateyVersion='0.10.15'; iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex", name: "Install Chocolatey"
-    config.vm.provision "shell", path: "provision/ps.ps1", args: "provision-base.ps1"
+    #config.vm.provision "shell", path: "provision/ps.ps1", args: "provision-base.ps1"
     config.vm.provision "shell", reboot: true
     config.vm.provision "shell", path: "provision/ps.ps1", args: "ad-explorer.ps1"
     config.vm.provision "shell", path: "provision/ps.ps1", args: "ca.ps1"
