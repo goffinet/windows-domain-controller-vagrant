@@ -21,7 +21,10 @@ Vagrant.configure("2") do |config|
         # replace the default synced_folder with something that works in the base box.
         # NB for some reason, this does not work when placed in the base box Vagrantfile.
         #config.vm.synced_folder '.', '/vagrant', type: 'smb', smb_username: ENV['USER'], smb_password: ENV['VAGRANT_SMB_PASSWORD']
-        config.vm.synced_folder '.', '/vagrant', type: 'rsync', rsync__exclude: ['.vagrant/','.git/','*.box']
+        config.vm.synced_folder '.', '/vagrant', type: 'rsync', rsync__exclude: [
+          '.vagrant/',
+          '.git/',
+          '*.box']
     end
 
     config.vm.provider :virtualbox do |v, override|
