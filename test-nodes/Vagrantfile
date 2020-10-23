@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
     config.vm.provider :libvirt do |lv, config|
         lv.cpus = 2
         lv.cpu_mode = 'host-passthrough'
-        lv.keymap = 'pt'
+        lv.keymap = 'be'
     end
 
     config.vm.provider :virtualbox do |v, override|
