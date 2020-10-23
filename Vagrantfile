@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
         lv.memory = 2048
         lv.cpus = 2
         lv.cpu_mode = 'host-passthrough'
-        lv.keymap = 'be'
+        lv.keymap = 'fr'
         # replace the default synced_folder with something that works in the base box.
         # NB for some reason, this does not work when placed in the base box Vagrantfile.
         #config.vm.synced_folder '.', '/vagrant', type: 'smb', smb_username: ENV['USER'], smb_password: ENV['VAGRANT_SMB_PASSWORD']

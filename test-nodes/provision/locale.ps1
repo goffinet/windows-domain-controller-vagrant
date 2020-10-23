@@ -6,10 +6,10 @@ $ErrorActionPreference = 'Stop'
 # set keyboard layout.
 # NB you can get the name from the list:
 #      [System.Globalization.CultureInfo]::GetCultures('InstalledWin32Cultures') | out-gridview
-Set-WinUserLanguageList pt-PT -Force
+Set-WinUserLanguageList fr-FR -Force
 
 # set the date format, number format, etc.
-Set-Culture pt-PT
+Set-Culture fr-FR
 
 # set the timezone.
 # tzutil /l lists all available timezone ids
@@ -87,4 +87,4 @@ function Set-WinLogonLanguageList {
     }
 }
 
-Set-WinLogonLanguageList -LanguageList pt-PT,en-US
+Set-WinLogonLanguageList -LanguageList fr-FR,en-US

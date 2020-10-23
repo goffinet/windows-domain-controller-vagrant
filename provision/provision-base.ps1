@@ -1,10 +1,10 @@
 # set keyboard layout.
 # NB you can get the name from the list:
 #      [Globalization.CultureInfo]::GetCultures('InstalledWin32Cultures') | Out-GridView
-Set-WinUserLanguageList pt-PT -Force
+Set-WinUserLanguageList fr-FR -Force
 
 # set the date format, number format, etc.
-Set-Culture pt-PT
+Set-Culture fr-FR
 
 # set the welcome screen culture and keyboard layout.
 # NB the .DEFAULT key is for the local SYSTEM account (S-1-5-18).
